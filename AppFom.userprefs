@@ -1,5 +1,9 @@
 ﻿<Properties StartupConfiguration="{0BBE9879-1C93-424F-B22C-ECD47C5774B7}|Default">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AppFom/AppFom.cs">
+    <Files>
+      <File FileName="AppFom/AppFom.cs" Line="30" Column="42" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.AppFom.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.88ED2DFF-487E-4D0F-9887-4A96A2764392">
     <MonoDevelop.MacDev.AppleDevelopmentTeam />
