@@ -1,30 +1,19 @@
 ﻿using System;
-
+using AppFom.MasterDetail;
+using AppFom.Pages;
 using Xamarin.Forms;
 
 namespace AppFom
 {
     public class App : Application
     {
+        public static INavigation INavPage { get; set; }
+
         public App()
         {
-            // The root page of your application
-            var content = new ContentPage
-            {
-                Title = "AppFom",
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Foms!"
-                        }
-                    }
-                }
-            };
+            // The root page of your application           
+            MainPage = new NavigationPage(new PageSession());
 
-            MainPage = new NavigationPage(content);
         }
 
         protected override void OnStart()

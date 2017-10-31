@@ -1,7 +1,14 @@
 ﻿<Properties StartupConfiguration="{0BBE9879-1C93-424F-B22C-ECD47C5774B7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="AppFom/AppFom.cs">
+  <MonoDevelop.Ide.ItemProperties.AppFom.Droid PreferredExecutionTarget="Android.Android_Accelerated_x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AppFom/Pages/PageMap.cs">
     <Files>
-      <File FileName="AppFom/AppFom.cs" Line="30" Column="42" />
+      <File FileName="AppFom/Pages/PageSession.cs" Line="46" Column="13" />
+      <File FileName="AppFom/Pages/PageLogin.cs" Line="104" Column="15" />
+      <File FileName="AppFom/MasterDetail/MenuListData.cs" Line="43" Column="13" />
+      <File FileName="AppFom/MasterDetail/MenuPage.cs" Line="105" Column="43" />
+      <File FileName="AppFom/Helpers/ColorManager.cs" Line="14" Column="75" />
+      <File FileName="AppFom/MasterDetail/RootPage.cs" Line="19" Column="10" />
+      <File FileName="AppFom/Pages/PageMap.cs" Line="27" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

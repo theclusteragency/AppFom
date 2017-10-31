@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using AppFom.Helpers;
+using Xamarin;
 
 namespace AppFom.Droid
 {
@@ -21,6 +23,14 @@ namespace AppFom.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FormsMaps.Init(this, bundle);
+
+
+            //-----------------------------------------------------------//
+            //----------------SCREEN WIDTH & HEIGTH----------------------//
+            //-----------------------------------------------------------//
+            Fom.Screen.Width = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+            Fom.Screen.Height = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
 
             LoadApplication(new App());
         }
