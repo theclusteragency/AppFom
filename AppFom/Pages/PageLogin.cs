@@ -36,20 +36,32 @@ namespace AppFom.Pages
                               })
                          );
 
-            var IcoMapRafaGana = new Image { Source = ImageSource.FromResource("AppFom.Images.ico_fom_maprafagana.png") };
+            var IcoMapRafaGana = new Image { Source = ImageSource.FromResource("AppFom.Images.img_fom_control.png") };
 
-            BgLayout.Children.Add(IcoMapRafaGana,
-                                  Constraint.Constant(Fom.Screen.Width / 2 - (439 * .35 / 2)),
-                                  Constraint.Constant(Fom.Screen.Height * .05),
-                                  Constraint.Constant(439 * .35),
-                                  Constraint.Constant(287 * .35)
-                         );
+            if (Fom.Device.IsDroid)
+            {
+                BgLayout.Children.Add(IcoMapRafaGana,
+                                      Constraint.Constant(Fom.Screen.Width / 2 - (439 * .35 / 2)),
+                                      Constraint.Constant(Fom.Screen.Height * .07),
+                                      Constraint.Constant(439 * .35),
+                                      Constraint.Constant(287 * .35)
+                             );
+            }
+            else
+            {
 
+                BgLayout.Children.Add(IcoMapRafaGana,
+                                      Constraint.Constant(Fom.Screen.Width / 2 - (439 * .35 / 2)),
+                                      Constraint.Constant(Fom.Screen.Height * .15),
+                                      Constraint.Constant(439 * .35),
+                                      Constraint.Constant(287 * .35)
+                             );
+            }
             // Contruye pantalla
             ScreenBuilder(SlRoot);
             BgLayout.Children.Add(SlRoot,
                              Constraint.Constant(0),
-                             Constraint.Constant(0),
+                             Constraint.Constant(Fom.Screen.Height * .02),
                              Constraint.RelativeToParent((Parent) =>
                              {
                                  return Parent.Width;
@@ -87,12 +99,54 @@ namespace AppFom.Pages
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label))
             };
 
-            var EntryUser = new Entry { Placeholder = "Correo electrónica", PlaceholderColor = Fom.Colors.UIKitWhite };
-            EntryUser.SetBinding(Entry.TextProperty, "TextUser");
 
-            var EntryPsw = new Entry { Placeholder = "Contraseña", IsPassword = true, PlaceholderColor = Fom.Colors.UIKitWhite };
+            var SlWrapUser = new StackLayout
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Spacing = 0
+            };
+            var EntryUser = new CustomEntry
+            {
+                Placeholder = " Correo electrónica",
+                PlaceholderColor = Fom.Colors.UIKitWhite,
+                TextColor = Fom.Colors.UIKitWhite
+            };
+            EntryUser.SetBinding(Entry.TextProperty, "TextUser");
+            var SlLineUser = new StackLayout
+            {
+                BackgroundColor = Fom.Colors.UIKitWhite,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HeightRequest = 1
+            };
+            SlWrapUser.Children.Add(EntryUser);
+            SlWrapUser.Children.Add(SlLineUser);
+
+
+            var SlWrapPsw = new StackLayout
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Spacing = 0
+            };
+
+            var EntryPsw = new CustomEntry
+            {
+                Placeholder = " Contraseña",
+                IsPassword = true,
+                PlaceholderColor = Fom.Colors.UIKitWhite,
+                TextColor = Fom.Colors.UIKitWhite
+            };
             EntryPsw.SetBinding(Entry.TextProperty, "TextPsw");
 
+            var SlLinePsw = new StackLayout
+            {
+                BackgroundColor = Fom.Colors.UIKitWhite,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HeightRequest = 1
+            };
+            SlWrapPsw.Children.Add(EntryPsw);
+            SlWrapPsw.Children.Add(SlLinePsw);
 
             var TgBtnIniSession = new TapGestureRecognizer();
             TgBtnIniSession.SetBinding(TapGestureRecognizer.CommandProperty, "CommandSignIn");
@@ -116,8 +170,8 @@ namespace AppFom.Pages
             };
 
             SlWrap.Children.Add(lblInitSession);
-            SlWrap.Children.Add(EntryUser);
-            SlWrap.Children.Add(EntryPsw);
+            SlWrap.Children.Add(SlWrapUser);
+            SlWrap.Children.Add(SlWrapPsw);
             SlWrap.Children.Add(lblForgetPsw);
             SlWrap.Children.Add(ImgBtnIniSession);
 

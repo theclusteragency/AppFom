@@ -11,6 +11,8 @@ namespace AppFom.Helpers
         private static ColorManager _colormanager;
         private static GlobalsManager _globalsManager;
         private static VMMenuPage _vmmenu;
+        private static DeviceManager _deviceManager;
+        static CacheManager cachemanager;
 
         //private static RegexManager _regexmanager;
         //private static ConfigManager _configmanager;
@@ -26,6 +28,22 @@ namespace AppFom.Helpers
         #endregion
 
         #region Singletons
+
+        /// <summary>
+        /// Singleton Manager Device
+        /// </summary>      
+        public static DeviceManager Device
+        {
+
+            get
+            {
+                if (_deviceManager == null)
+                    _deviceManager = new DeviceManager();
+
+                return _deviceManager;
+            }
+
+        }
 
         /// <summary>
         /// Singleton Manager Screen
@@ -92,6 +110,19 @@ namespace AppFom.Helpers
             }
 
         }
+
+        public static CacheManager Cache
+        {
+
+            get
+            {
+                if (cachemanager == null)
+                    cachemanager = new CacheManager();
+
+                return cachemanager;
+            }
+        }
+
 
         /*
         /// <summary>

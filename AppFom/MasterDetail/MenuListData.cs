@@ -29,7 +29,7 @@ namespace AppFom.MasterDetail
             {
                 Title = "Mis eventos",
                 IconSource = "ico_menu_events",
-                TargetType = typeof(PageCalendar),
+                TargetType = typeof(PageEvents),
                 Enable = true
             });
 
@@ -37,7 +37,7 @@ namespace AppFom.MasterDetail
             {
                 Title = "Soporte",
                 IconSource = "ico_menu_soporte",
-                TargetType = typeof(PageCalendar),
+                TargetType = typeof(PageSupport),
                 Enable = true
             });
 

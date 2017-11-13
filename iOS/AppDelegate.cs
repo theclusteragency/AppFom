@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using AppFom.Helpers;
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 using Xamarin;
+using XamForms.Controls.iOS;
 
 namespace AppFom.iOS
 {
@@ -15,6 +17,8 @@ namespace AppFom.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FormsMaps.Init();
+            Calendar.Init();
+            ImageCircleRenderer.Init();
 
             //-----------------------------------------------------------//
             //----------------SCREEN WIDTH & HEIGTH----------------------//

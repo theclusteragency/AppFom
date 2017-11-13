@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
+using AppFom.Helpers;
+using AppFom.Implementations;
+using AppFom.Models;
 using Plugin.Geolocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -15,12 +19,31 @@ namespace AppFom.Pages
 
             Device.BeginInvokeOnMainThread(async () =>
             {
+                Title = "Mapa";
 
                 var location = await GetCurrentLocation();
+                var services = new OperationServices();
 
+                // Actualizamos token 
+                var cacheUser = Fom.Cache.GetCachedObject<User>(CacheKeys.User);
+
+                Fom.Globals.USERFOM.latitud = Convert.ToString(location.Key);
+                Fom.Globals.USERFOM.longitud = Convert.ToString(location.Value);
+                Fom.Globals.USERFOM.token = cacheUser.token;// Lo obtenemos del cache siempre
+
+
+                var result = await services.UpdateUser(Fom.Globals.USERFOM);
+
+                // Pedimos eventos
+                var events = await services.GetOperEvents();
+
+                if (events.data.Count > 0)
+                    Fom.Globals.MISEVENTOS = events.data;
+
+                // Construimos mapa
                 var map = new Map(
                     MapSpan.FromCenterAndRadius(
-                        new Position(location.Key, location.Value), Distance.FromMiles(0.3)))
+                        new Position(location.Key, location.Value), Distance.FromMiles(10.3)))
                 {
                     IsShowingUser = true,
                     HeightRequest = 100,
@@ -28,33 +51,31 @@ namespace AppFom.Pages
                     VerticalOptions = LayoutOptions.FillAndExpand
                 };
                 var stack = new StackLayout { Spacing = 0 };
-                stack.Children.Add(map);
 
-
-                var positions = new[] {
-                    new { latitud = 19.4508296, longitud = -99.1811779,},new { latitud = 19.4608296, longitud = -99.1811779 },
-                    new { latitud = 19.4708296, longitud = -99.1811779 },new { latitud = 19.4808296, longitud = -99.1811779 }};
-
-                foreach (var item in positions)
+                foreach (var item in events.data)
                 {
 
                     var pin = new Pin
                     {
                         Type = PinType.Place,
-                        Position = new Position(item.latitud, item.longitud),
-                        Label = "custom pin",
-                        Address = "custom detail info"
+                        Position = new Position(double.Parse(item.latitud, CultureInfo.InvariantCulture), double.Parse(item.longitud, CultureInfo.InvariantCulture)),
+                        Label = item.descripcion,
+                        Address = item.direccion
                     };
+
                     pin.Clicked += async (sender, e) =>
                     {
 
-                        await PinSelected(pin);
+                        await PinSelected(pin, item);
                     };
 
-
                     map.Pins.Add(pin);
+
                 }
 
+                stack.Children.Add(map);
+
+                // Slider para zoom 
                 var slider = new Slider(1, 18, 1);
                 slider.ValueChanged += (sender, e) =>
                 {
@@ -62,7 +83,7 @@ namespace AppFom.Pages
                     var latlongdegrees = 360 / (Math.Pow(2, zoomLevel));
                     map.MoveToRegion(new MapSpan(map.VisibleRegion.Center, latlongdegrees, latlongdegrees));
                 };
-                stack.Children.Add(slider);
+                // stack.Children.Add(slider);
 
                 Content = stack;
 
@@ -83,10 +104,10 @@ namespace AppFom.Pages
 
         }
 
-        async Task PinSelected(Pin pin)
+        async Task PinSelected(Pin pin, Event evento)
         {
-
-            Debug.WriteLine(pin.Label);
+            Debug.WriteLine("Navega a evento {0} {1}", evento.id_evento, evento.descripcion);
+            await Navigation.PushAsync(new PageEventDetail(evento));
         }
 
 

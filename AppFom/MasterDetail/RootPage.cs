@@ -18,6 +18,16 @@ namespace AppFom.MasterDetail
             Detail = new NavigationPage(new PageMap()) { BarBackgroundColor = Fom.Colors.UIKitBlue, BarTextColor = Color.White }; ;
         }
 
+        public RootPage(string root)
+        {
+            MasterBehavior = MasterBehavior.Popover;
+            menuPage = new MenuPage();
+            menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
+            Master = menuPage;
+            Detail = new NavigationPage(new PageAccount()) { BarBackgroundColor = Fom.Colors.UIKitBlue, BarTextColor = Color.White }; ;
+        }
+
+
         async void NavigateTo(MenuItem menu)
         {
             if (menu == null)

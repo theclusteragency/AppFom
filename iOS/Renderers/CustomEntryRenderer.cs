@@ -17,14 +17,9 @@ namespace AppFom.iOS.Renderers
 
             if (Control != null)
             {
-                var borderLayer = new CALayer();
-                borderLayer.MasksToBounds = true;
-                borderLayer.Frame = new CoreGraphics.CGRect(0f, Frame.Height, Frame.Width, 1f);
-                Control.Layer.BorderColor = UIColor.DarkGray.CGColor;
-                borderLayer.BorderWidth = 1.0f;
 
+                Control.BackgroundColor = UIColor.Clear;
                 Control.BorderStyle = UITextBorderStyle.None;
-                Control.Layer.AddSublayer(borderLayer);
 
             }
         }

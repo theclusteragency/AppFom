@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
+using AppFom.Helpers;
+using AppFom.Models;
 using AppFom.Pages;
 using Xamarin.Forms;
 
@@ -36,7 +39,7 @@ namespace AppFom.MasterDetail
         public VMMenuPage(INavigation navigation)
         {
             this.Navigation = navigation;
-            Start_LoadDefault();
+            StartLoadDefault();
         }
 
         #endregion
@@ -54,6 +57,16 @@ namespace AppFom.MasterDetail
             }
         }
 
+        Command commandAccount;
+        public const string CommandAccountPropertyName = "CommandAccount";
+        public Command CommandAccount
+        {
+            get
+            {
+                return commandAccount ?? (commandAccount = new Command(async () => await ExecuteCommandAccount()));
+            }
+        }
+
         private ImageSource source_Photo;
         public const string Source_PhotoPropertyName = "Source_Photo";
         public ImageSource Source_Photo
@@ -62,32 +75,77 @@ namespace AppFom.MasterDetail
             set { source_Photo = value; }
         }
 
+        private string textName;
+        public const string TextNamePropertyName = "TextName";
+        public string TextName
+        {
+            get { return textName; }
+            set { textName = value; }
+        }
+
+        private string textDesRoll;
+        public const string TextDesRollPropertyName = "TextDesRoll";
+        public string TextDesRoll
+        {
+            get { return textDesRoll; }
+            set { textDesRoll = value; }
+        }
+
 
         #endregion
 
         #region Methods
 
-        async void Start_LoadDefault()
+        public void StartLoadDefault()
         {
-            Debug.WriteLine("Construir Main");
+            Debug.WriteLine("Carga perfil menu");
 
-            //source_Photo = string.IsNullOrEmpty(Look.Globals.URLPHOTOSUTOM) ? ImageSource.FromResource("GoodLook.Images.114.png") : Look.Globals.URLPHOTOSUTOM;
-            //OnPropertyChanged(Source_PhotoPropertyName);
+            source_Photo = string.IsNullOrEmpty(Fom.Globals.USERFOM.url_avatar) ? ImageSource.FromResource("AppFom.Images.img_fom_nopic.png") : ImageSource.FromUri(new Uri(Fom.Globals.USERFOM.url_avatar));
+            textName = Fom.Globals.USERFOM.nombre;
+            textDesRoll = Fom.Globals.USERFOM.descripcion_rol;
+
+            OnPropertyChanged(Source_PhotoPropertyName);
+            OnPropertyChanged(TextNamePropertyName);
+            OnPropertyChanged(TextDesRollPropertyName);
+
         }
 
 
 
         async Task ExecuteCommandClose()
         {
-            //var x = await Fom.Dialogs.DisplayCautionMessageCloseSession();
-            //if (x)
-            //{
-            // Limpiamos objeto que contengan info de la sesion               
-            //Application.Current.MainPage = new NavigationPage(new PageTest());
-            //}
 
-            App.Current.MainPage = new NavigationPage(new PageLogin());
+            var x = await UserDialogs.Instance.ConfirmAsync("Seguro que desea cerrar sesión ?", "Cancelar", "OK");
+            if (x)
+            {
+                var CachedUser = Fom.Cache.GetCachedObject<User>(CacheKeys.User);
+                CachedUser.onSession = false;
+
+                // Almacenamos datos de usuario en cache
+                Fom.Cache.SetCachedObject<User>(CacheKeys.User, CachedUser);
+
+                // Vamos al login
+                App.Current.MainPage = new NavigationPage(new PageLogin());
+            }
+
         }
+
+        public async Task ExecuteCommandAccount()
+        {
+
+            Debug.WriteLine("Ir a Mi Cuenta");
+
+            App.Current.MainPage = new RootPage("Account");//new NavigationPage(new RootPage("Account"));
+
+
+        }
+
+        public void UpdateMenuPage()
+        {
+            source_Photo = ImageSource.FromUri(new Uri(Fom.Globals.USERFOM.url_avatar));
+            OnPropertyChanged(Source_PhotoPropertyName);
+        }
+
 
 
         #endregion

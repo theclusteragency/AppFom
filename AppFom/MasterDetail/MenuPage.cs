@@ -1,5 +1,6 @@
 ﻿using System;
 using AppFom.Helpers;
+using ImageCircle.Forms.Plugin.Abstractions;
 using Xamarin.Forms;
 
 namespace AppFom.MasterDetail
@@ -49,36 +50,71 @@ namespace AppFom.MasterDetail
                 Padding = new Thickness(15, 15, 0, 0),
                 Spacing = 20
             };
-            //var NoUser = new Image { 
-            //Source = ImageSource.FromResource("GoodLook.Images.gl_img_girl.png"),
-            //HeightRequest = 45, WidthRequest = 45 };
-            var Sl_Wrap_Photo = new StackLayout
-            { //BackgroundColor = Color.Red, 
-                VerticalOptions = LayoutOptions.Center
+
+
+            var TgAccount = new TapGestureRecognizer();
+            TgAccount.SetBinding(TapGestureRecognizer.CommandProperty, "CommandAccount");
+
+            var SlWrapPhoto = new StackLayout
+            {
+                Padding = new Thickness(10, 20, 10, 10),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                Orientation = StackOrientation.Horizontal,
+                Spacing = 10
             };
-            //var NoUser = new CircleImage
-            //{
-            //    BorderColor = Color.White,
-            //    BorderThickness = 1,
-            //    HeightRequest = 45,
-            //    WidthRequest = 45,
-            //    Aspect = Aspect.AspectFill,
-            //    HorizontalOptions = LayoutOptions.Center,
-            //    //Source = UriImageSource.FromUri(new Uri("http://lorempixel.com/80/80/"))
-            //};
-            //NoUser.SetBinding(Image.SourceProperty, "Source_Photo");
-            //Sl_Wrap_Photo.Children.Add(NoUser);
-            var Lbl_Name = new Label
+            SlWrapPhoto.GestureRecognizers.Add(TgAccount);
+
+            var NoUser = new CircleImage
+            {
+                BorderColor = Color.LightGray,
+                BorderThickness = 1,
+                HeightRequest = 50,
+                WidthRequest = 50,
+                Aspect = Aspect.AspectFill,
+                HorizontalOptions = LayoutOptions.Center,
+                //Source = UriImageSource.FromUri(new Uri("http://lorempixel.com/80/80/"))
+            };
+            NoUser.SetBinding(Image.SourceProperty, "Source_Photo");
+
+            SlWrapPhoto.Children.Add(NoUser);
+
+            var SlWrapInfo = new StackLayout
+            {
+                HorizontalOptions = LayoutOptions.StartAndExpand,
+                VerticalOptions = LayoutOptions.End,
+                Orientation = StackOrientation.Vertical,
+                Spacing = 0,
+            };
+
+            var LblName = new Label
             {
                 //Text = string.Format("{0} {1}", Look.Globals.NAME, Look.Globals.LASTNAME),
-                Text = "Sabrina",
+                //Text = "Sabrina Torres",
                 FontAttributes = FontAttributes.Bold,
                 VerticalTextAlignment = TextAlignment.Center,
                 LineBreakMode = LineBreakMode.TailTruncation
 
             };
-            Sl_Head.Children.Add(Sl_Wrap_Photo);
-            Sl_Head.Children.Add(Lbl_Name);
+            LblName.SetBinding(Label.TextProperty, "TextName");
+
+            var LblJob = new Label
+            {
+                //Text = string.Format("{0} {1}", Look.Globals.NAME, Look.Globals.LASTNAME),
+                //Text = "Gerente 3er distrito",
+                TextColor = Color.LightGray,
+                VerticalTextAlignment = TextAlignment.Center,
+                FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
+                LineBreakMode = LineBreakMode.TailTruncation
+
+            };
+            LblJob.SetBinding(Label.TextProperty, "TextDesRoll");
+
+            SlWrapInfo.Children.Add(LblName);
+            SlWrapInfo.Children.Add(LblJob);
+
+            SlWrapPhoto.Children.Add(SlWrapInfo);
+
+            Sl_Head.Children.Add(SlWrapPhoto);
             layout.Children.Add(Sl_Head);
             layout.Children.Add(Menu);
 
