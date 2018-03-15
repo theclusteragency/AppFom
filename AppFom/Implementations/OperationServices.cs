@@ -299,6 +299,99 @@ namespace AppFom.Implementations
             return responseObj;
         }
 
+        public async Task<OperResult<List<User>>> getAllUsers()
+        {
+
+            var responseObj = new OperResult<List<User>>();
+            //var contentHttp = new StringContent(JsonConvert.SerializeObject(generic), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await GetCustomHttpClient().GetAsync(Endpoints.getUsersURI);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine("Content: " + json);
+
+                    responseObj = JsonConvert.DeserializeObject<OperResult<List<User>>>(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception Message:" + ex.Message);
+                responseObj.message = ex.Message;
+                responseObj.code = 100;
+                responseObj.data = null;
+            }
+
+            return responseObj;
+        }
+
+        public async Task<OperResult<List<Comentario>>> getChatComments<T>(T generic)
+        {
+
+            var responseObj = new OperResult<List<Comentario>>();
+            Debug.WriteLine(JsonConvert.SerializeObject(generic));
+
+            var contentHttp = new StringContent(JsonConvert.SerializeObject(generic), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await GetCustomHttpClient().PostAsync(Endpoints.getChat, contentHttp);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine("Content: " + json);
+                    responseObj = JsonConvert.DeserializeObject<OperResult<List<Comentario>>>(json);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception Message:" + ex.Message);
+                responseObj.message = ex.Message;
+                responseObj.code = 100;
+                responseObj.data = null;
+            }
+
+            return responseObj;
+        }
+
+        public async Task<OperResult<int>> AddChatComment<T>(T generic)
+        {
+
+            var responseObj = new OperResult<int>();
+            Debug.WriteLine(JsonConvert.SerializeObject(generic));
+
+            var contentHttp = new StringContent(JsonConvert.SerializeObject(generic), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await GetCustomHttpClient().PostAsync(Endpoints.addChatCommentURI, contentHttp);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine("Content: " + json);
+                    //responseObj = JsonConvert.DeserializeAnonymousType(json,anonimo );
+                    responseObj.code = 0;
+                    responseObj.message = "Exito";
+                    responseObj.data = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception Message:" + ex.Message);
+                responseObj.message = ex.Message;
+                responseObj.code = 100;
+                responseObj.data = 100;
+            }
+
+            return responseObj;
+        }
+
 
         #region HTTPCLIENTE
 

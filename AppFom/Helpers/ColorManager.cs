@@ -19,5 +19,7 @@ namespace AppFom.Helpers
 
         public Color UIKitYellow { get { return Color.FromHex("fce830"); } }
 
+        public Color UIKitRed { get { return Color.FromHex("ff1c1c"); } }
+
     }
 }

@@ -42,7 +42,8 @@ namespace AppFom.Pages
 
                     var BgLayout = new RelativeLayout();
 
-                    var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+                    //var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+                    var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin_red.png"), Aspect = Aspect.AspectFill };
 
                     BgLayout.Children.Add(BgImage,
                                       Constraint.Constant(0),
@@ -313,7 +314,7 @@ namespace AppFom.Pages
             };
             SlContent.Children.Add(LineThree);
 
-            // Agregamos analistas 
+            /*/ Agregamos analistas 
             var LblTitAnalistas = new Label
             {
 
@@ -334,16 +335,7 @@ namespace AppFom.Pages
                 HorizontalOptions = LayoutOptions.FillAndExpand,
 
             };
-
-            //var analists = new[] {
-            //    new { name = "Jorge", url = "http://lorempixel.com/80/80/"}
-            //    ,new { name = "Jorge", url = "http://lorempixel.com/80/80/" }
-            //    ,new { name = "Pedro", url = "http://lorempixel.com/80/80/"}
-            //    ,new { name = "Luis", url = "http://lorempixel.com/80/80/"}
-            //    ,new { name = "Jorge", url = "http://lorempixel.com/80/80/" }
-            //    ,new { name = "Jorge", url = "http://lorempixel.com/80/80/" }
-            //    ,new { name = "Jorge", url = "http://lorempixel.com/80/80/" }
-            //};
+                       
             var analists = detail.analistas;
 
             foreach (var item in analists)
@@ -393,6 +385,7 @@ namespace AppFom.Pages
                 HeightRequest = 1
             };
             SlContent.Children.Add(LineFour);
+            */
 
             // Agregamos Galeria 
             var TgActivity = new TapGestureRecognizer();

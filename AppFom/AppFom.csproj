@@ -64,7 +64,6 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Pages\PageEvents.cs" />
     <Compile Include="Helpers\DeviceManager.cs" />
-    <Compile Include="Helpers\SNSUtils.cs" />
     <Compile Include="Pages\PageEventDetail.cs" />
     <Compile Include="ViewModels\VMEventDetail.cs" />
     <Compile Include="Pages\PageActivities.cs" />
@@ -82,6 +81,11 @@
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Helpers\CacheManager.cs" />
     <Compile Include="Helpers\CacheKeys.cs" />
+    <Compile Include="Pages\PageChat.cs" />
+    <Compile Include="ViewModels\VMChat.cs" />
+    <Compile Include="CellViews\VCUser.cs" />
+    <Compile Include="Pages\PageChatDetail.cs" />
+    <Compile Include="ViewModels\VMChatDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -144,15 +148,6 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\netstandard1.0\Plugin.Media.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK.Core">
-      <HintPath>..\packages\AWSSDK.Core.3.3.1.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\AWSSDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.S3">
-      <HintPath>..\packages\AWSSDK.S3.3.3.0.3\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\AWSSDK.S3.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.SimpleNotificationService">
-      <HintPath>..\packages\AWSSDK.SimpleNotificationService.3.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\AWSSDK.SimpleNotificationService.dll</HintPath>
-    </Reference>
     <Reference Include="System.Reactive.Interfaces">
       <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
@@ -185,6 +180,51 @@
     </Reference>
     <Reference Include="Plugin.ExternalMaps">
       <HintPath>..\packages\Xam.Plugin.ExternalMaps.4.0.1\lib\netstandard1.0\Plugin.ExternalMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\packages\SkiaSharp.1.55.1\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\packages\SkiaSharp.Views.Forms.1.55.1\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.Views.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Chart">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Common">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataControls">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.DataControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataGrid">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataVisualization">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Input">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Primitives">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.SkiaSharp">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Zip">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\portable-net45+win8+wpa81+wp8\Telerik.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer">
+      <HintPath>..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Octane.Xam.VideoPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.Core">
+      <HintPath>..\packages\AWSSDK.Core.3.3.19\lib\portable-net45+win8+wpa81+wp8\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3">
+      <HintPath>..\packages\AWSSDK.S3.3.3.14\lib\portable-net45+win8+wpa81+wp8\AWSSDK.S3.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +263,10 @@
     <EmbeddedResource Include="Images\ico_btn_sendmsj.png" />
     <EmbeddedResource Include="Images\img_btn_addphoto.png" />
     <EmbeddedResource Include="Images\img_fom_control.png" />
+    <EmbeddedResource Include="Images\img_fom_bgmenu.png" />
+    <EmbeddedResource Include="Images\img_fom_counter.png" />
+    <EmbeddedResource Include="Images\video_fom.mp4" />
+    <EmbeddedResource Include="Images\bg_fom_blelogin_red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.18342\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.18342\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

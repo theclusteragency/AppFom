@@ -68,6 +68,7 @@ public class Comentario
     public object id_usuario { get; set; }
     public object url_avatar { get; set; }
     public object fecha_comentario { get; set; }
+    public object mensaje { get; set; }
 }
 
 public class Foto

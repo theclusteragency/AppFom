@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Acr.UserDialogs;
 using AppFom.CellViews;
 using AppFom.Helpers;
+using AppFom.Implementations;
+using AppFom.Models;
+using AppFom.ViewModels;
 using ImageCircle.Forms.Plugin.Abstractions;
+using Plugin.Geolocator;
 using Xamarin.Forms;
 
 namespace AppFom.Pages
@@ -17,45 +25,89 @@ namespace AppFom.Pages
 
         public PageEvents()
         {
-            Title = "Mis Eventos";
-            //NavigationPage.SetHasNavigationBar(this, false);
+            try
+            {
 
-            var BgLayout = new RelativeLayout();
+                UserDialogs.Instance.ShowLoading();
 
-            var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+                Device.BeginInvokeOnMainThread(async () =>
+                {
 
-            BgLayout.Children.Add(BgImage,
-                              Constraint.Constant(0),
-                              Constraint.Constant(0),
-                              Constraint.RelativeToParent((Parent) =>
-                              {
-                                  return Parent.Width;
-                              }),
-                              Constraint.RelativeToParent((Parent) =>
-                              {
-                                  return Parent.Height;
-                              })
-                         );
+                    Title = "Mis Eventos";
+                    //NavigationPage.SetHasNavigationBar(this, false);
+
+                    var location = await GetCurrentLocation();
+                    var services = new OperationServices();
+
+                    // Actualizamos token 
+                    var cacheUser = Fom.Cache.GetCachedObject<User>(CacheKeys.User);
+
+                    Fom.Globals.USERFOM.latitud = Convert.ToString(location.Key);
+                    Fom.Globals.USERFOM.longitud = Convert.ToString(location.Value);
+                    Fom.Globals.USERFOM.token = cacheUser.token;// Lo obtenemos del cache siempre
 
 
-            // Contruye pantalla
-            ScreenBuilder(SlRoot);
-            BgLayout.Children.Add(SlRoot,
-                             Constraint.Constant(0),
-                             Constraint.Constant(0),
-                             Constraint.RelativeToParent((Parent) =>
-                             {
-                                 return Parent.Width;
-                             }),
-                             Constraint.RelativeToParent((Parent) =>
-                             {
-                                 return Parent.Height;
-                             })
-                        );
+                    var result = await services.UpdateUser(Fom.Globals.USERFOM);
 
-            // this.BindingContext = new VMAccount(this.Navigation);
+                    // Pedimos eventos
+                    var events = await services.GetOperEvents();
 
-            Content = BgLayout;
+                    if (events.data.Count > 0)
+                    {
+                        Fom.Globals.MISEVENTOS = events.data;
+                        Fom.VMmenu.UpdateCounter(events.data.Count.ToString());
+                    }
+
+
+
+                    var BgLayout = new RelativeLayout();
+
+                    //var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+                    var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin_red.png"), Aspect = Aspect.AspectFill };
+
+                    BgLayout.Children.Add(BgImage,
+                                      Constraint.Constant(0),
+                                      Constraint.Constant(0),
+                                      Constraint.RelativeToParent((Parent) =>
+                                      {
+                                          return Parent.Width;
+                                      }),
+                                      Constraint.RelativeToParent((Parent) =>
+                                      {
+                                          return Parent.Height;
+                                      })
+                                 );
+
+
+                    // Contruye pantalla
+                    ScreenBuilder(SlRoot);
+                    BgLayout.Children.Add(SlRoot,
+                                     Constraint.Constant(0),
+                                     Constraint.Constant(0),
+                                     Constraint.RelativeToParent((Parent) =>
+                                     {
+                                         return Parent.Width;
+                                     }),
+                                     Constraint.RelativeToParent((Parent) =>
+                                     {
+                                         return Parent.Height;
+                                     })
+                                );
+
+                    this.BindingContext = new VMCalendarDay(this.Navigation);
+
+                    UserDialogs.Instance.HideLoading();
+
+                    Content = BgLayout;
+                });
+
+            }
+            catch (Exception ex)
+            {
+
+                UserDialogs.Instance.HideLoading();
+                Debug.WriteLine(ex.Message);
+            }
         }
 
 
@@ -73,10 +125,9 @@ namespace AppFom.Pages
             var listEvents = new ListView();
             listEvents.BackgroundColor = Color.Transparent;
             listEvents.ItemTemplate = new DataTemplate(typeof(VCEvent));
-            //listEvents.SetBinding(ListView.ItemsSourceProperty, "SourceListBranch");
+            //listEvents.SetBinding(ListView.ItemsSourceProperty, "SelectedEvents");
             listEvents.ItemsSource = Fom.Globals.MISEVENTOS;
-            //listEvents.SetBinding(ListView.SelectedItemProperty, "SelectedEvents");
-            //listEvents.SetBinding(ListView.SelectedItemProperty, "SelectedEvents");
+            listEvents.SetBinding(ListView.SelectedItemProperty, "SelectedEvents");
             //listEvents.SetBinding(ListView.IsRefreshingProperty, "IsBusy");
             listEvents.RowHeight = 120;
             listEvents.ItemSelected += (sender, e) =>
@@ -91,6 +142,27 @@ namespace AppFom.Pages
             slWrap.Children.Add(listEvents);
 
             root.Children.Add(slWrap);
+
+        }
+
+        public async Task<KeyValuePair<double, double>> GetCurrentLocation()
+        {
+
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 100;
+
+            var position = await locator.GetLastKnownLocationAsync();
+
+            if (position != null)
+            {
+
+                return new KeyValuePair<double, double>(position.Latitude, position.Longitude);
+            }
+            else
+            {
+
+                return new KeyValuePair<double, double>(19.39068, -99.283697);
+            }
 
         }
 

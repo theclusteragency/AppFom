@@ -25,7 +25,6 @@ namespace AppFom.ViewModels
 
         }
 
-
         Event selectedEvents;
         public const string SelectedEventsPropertyName = "SelectedEvents";
         public Event SelectedEvents

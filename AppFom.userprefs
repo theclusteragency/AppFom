@@ -1,20 +1,14 @@
 ﻿<Properties StartupConfiguration="{D1353185-44F3-4BF4-A0CD-3281D03EA476}|Default">
-  <MonoDevelop.Ide.ItemProperties.AppFom.Droid PreferredExecutionTarget="Android.82358379121409" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AppFom/Implementations/OperationServices.cs">
-    <Files>
-      <File FileName="Droid/FomFirebaseIIDService.cs" Line="36" Column="70" />
-      <File FileName="AppFom/Implementations/OperationServices.cs" Line="107" Column="51" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.ItemProperties.AppFom.Droid PreferredExecutionTarget="Android.AXS0216806002594" />
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" />
   <MonoDevelop.Ide.ItemProperties.AppFom.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.BFAD9F93-FA01-43B5-877A-1603FA6EE92A">
     <MonoDevelop.MacDev.AppleDevelopmentTeam />
   </MonoDevelop.Ide.ItemProperties.AppFom.iOS>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/jgonzalez/XamarinDev/AppFom/AppFom/Helpers/SNSUtils.cs" relfile="AppFom/Helpers/SNSUtils.cs" line="168" column="1" />
-      <Breakpoint file="/Users/jgonzalez/XamarinDev/AppFom/Droid/FomFirebaseIIDService.cs" relfile="Droid/FomFirebaseIIDService.cs" line="25" column="1" />
-      <Breakpoint file="/Users/jgonzalez/XamarinDev/AppFom/Droid/FomFirebaseIIDService.cs" relfile="Droid/FomFirebaseIIDService.cs" line="42" column="1" />
+      <Breakpoint file="/Users/jgonzalez/XamarinDev/AppFom/AppFom/Pages/PageCalendarDay.cs" relfile="AppFom/Pages/PageCalendarDay.cs" line="23" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

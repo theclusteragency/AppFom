@@ -67,8 +67,22 @@ namespace AppFom.CellViews
             };
             lblComment.SetBinding(Label.TextProperty, "descripcion");
 
+            var lblMesaage = new Label
+            {
+
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HorizontalTextAlignment = TextAlignment.Start,
+                VerticalTextAlignment = TextAlignment.Center,
+                FontAttributes = FontAttributes.Bold,
+                TextColor = Color.White
+            };
+            lblMesaage.SetBinding(Label.TextProperty, "mensaje");
+
+
             slWrap.Children.Add(SlWrapImage);
             slWrap.Children.Add(lblComment);
+            slWrap.Children.Add(lblMesaage);
 
             this.View = slWrap;
         }

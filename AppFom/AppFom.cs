@@ -14,7 +14,7 @@ namespace AppFom
 
         public App()
         {
-            // Inicializamos cache
+            //Inicializamos cache
             BlobCache.ApplicationName = "ResuelveTuDeuda";
             Fom.Cache.Init();
 
@@ -35,6 +35,7 @@ namespace AppFom
                 MainPage = new NavigationPage(new PageSession());
             }
 
+            //MainPage = new NavigationPage(new PageTest());
         }
 
         protected override void OnStart()

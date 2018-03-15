@@ -1,0 +1,3 @@
+iOS/bin/iPhone/Debug/device-builds/iphone8.2-11.1/AppFom.iOS.app/AppFom.iOS filter=lfs diff=lfs merge=lfs -text
+iOS/ob filter=lfs diff=lfs merge=lfs -text
+iOS/obj/ filter=lfs diff=lfs merge=lfs -text

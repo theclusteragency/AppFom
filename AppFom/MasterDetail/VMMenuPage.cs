@@ -91,6 +91,13 @@ namespace AppFom.MasterDetail
             set { textDesRoll = value; }
         }
 
+        private string textCounter;
+        public const string TextCounterPropertyName = "TextCounter";
+        public string TextCounter
+        {
+            get { return textCounter; }
+            set { textCounter = value; }
+        }
 
         #endregion
 
@@ -104,9 +111,13 @@ namespace AppFom.MasterDetail
             textName = Fom.Globals.USERFOM.nombre;
             textDesRoll = Fom.Globals.USERFOM.descripcion_rol;
 
+            textCounter = "0";
+
             OnPropertyChanged(Source_PhotoPropertyName);
             OnPropertyChanged(TextNamePropertyName);
             OnPropertyChanged(TextDesRollPropertyName);
+
+            OnPropertyChanged(TextCounterPropertyName);
 
         }
 
@@ -146,7 +157,11 @@ namespace AppFom.MasterDetail
             OnPropertyChanged(Source_PhotoPropertyName);
         }
 
-
+        public void UpdateCounter(string count)
+        {
+            textCounter = count;
+            OnPropertyChanged(TextCounterPropertyName);
+        }
 
         #endregion
     }

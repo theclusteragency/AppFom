@@ -168,12 +168,6 @@
     <Reference Include="PCLStorage">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK.Core">
-      <HintPath>..\packages\AWSSDK.Core.3.3.1.1\lib\Xamarin.iOS10\AWSSDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.S3">
-      <HintPath>..\packages\AWSSDK.S3.3.3.0.3\lib\netstandard1.3\AWSSDK.S3.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -215,6 +209,54 @@
     </Reference>
     <Reference Include="Plugin.ExternalMaps">
       <HintPath>..\packages\Xam.Plugin.ExternalMaps.4.0.1\lib\Xamarin.iOS10\Plugin.ExternalMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\packages\SkiaSharp.1.55.1\lib\XamariniOS\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.iOS">
+      <HintPath>..\packages\SkiaSharp.Views.1.55.1\lib\XamariniOS\SkiaSharp.Views.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\packages\SkiaSharp.Views.Forms.1.55.1\lib\XamariniOS\SkiaSharp.Views.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.iOS">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.Xamarin.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Chart">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Common">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataControls">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.DataControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataGrid">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataVisualization">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Input">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Primitives">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.SkiaSharp">
+      <HintPath>..\packages\Telerik.UI.for.Xamarin.2017.3.1103.4\lib\xamarinios10\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer">
+      <HintPath>..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\Xamarin.iOS10\Octane.Xam.VideoPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer.iOS">
+      <HintPath>..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\Xamarin.iOS10\Octane.Xam.VideoPlayer.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.Core">
+      <HintPath>..\packages\AWSSDK.Core.3.3.19\lib\Xamarin.iOS10\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3">
+      <HintPath>..\packages\AWSSDK.S3.3.3.14\lib\Xamarin.iOS10\AWSSDK.S3.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +306,8 @@
     <BundleResource Include="Resources\ico_menu_events%402x.png" />
     <BundleResource Include="Resources\ico_menu_soporte.png" />
     <BundleResource Include="Resources\ico_menu_soporte%402x.png" />
+    <BundleResource Include="Resources\ico_menu_chat.png" />
+    <BundleResource Include="Resources\ico_menu_chat%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.18342\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.18342\build\netstandard1.0\Xamarin.Forms.targets')" />

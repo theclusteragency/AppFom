@@ -22,28 +22,28 @@ namespace AppFom.Pages
                 Title = "Mapa";
 
                 var location = await GetCurrentLocation();
-                var services = new OperationServices();
+                //var services = new OperationServices();
 
-                // Actualizamos token 
-                var cacheUser = Fom.Cache.GetCachedObject<User>(CacheKeys.User);
+                //// Actualizamos token 
+                //var cacheUser = Fom.Cache.GetCachedObject<User>(CacheKeys.User);
 
-                Fom.Globals.USERFOM.latitud = Convert.ToString(location.Key);
-                Fom.Globals.USERFOM.longitud = Convert.ToString(location.Value);
-                Fom.Globals.USERFOM.token = cacheUser.token;// Lo obtenemos del cache siempre
+                //Fom.Globals.USERFOM.latitud = Convert.ToString(location.Key);
+                //Fom.Globals.USERFOM.longitud = Convert.ToString(location.Value);
+                //Fom.Globals.USERFOM.token = cacheUser.token;// Lo obtenemos del cache siempre
 
 
-                var result = await services.UpdateUser(Fom.Globals.USERFOM);
+                //var result = await services.UpdateUser(Fom.Globals.USERFOM);
 
-                // Pedimos eventos
-                var events = await services.GetOperEvents();
+                //// Pedimos eventos
+                //var events = await services.GetOperEvents();
 
-                if (events.data.Count > 0)
-                    Fom.Globals.MISEVENTOS = events.data;
+                //if (events.data.Count > 0)
+                //Fom.Globals.MISEVENTOS = events.data;
 
                 // Construimos mapa
                 var map = new Map(
                     MapSpan.FromCenterAndRadius(
-                        new Position(location.Key, location.Value), Distance.FromMiles(10.3)))
+                       new Position(location.Key, location.Value), Distance.FromMiles(10.3)))
                 {
                     IsShowingUser = true,
                     HeightRequest = 100,
@@ -52,9 +52,8 @@ namespace AppFom.Pages
                 };
                 var stack = new StackLayout { Spacing = 0 };
 
-                foreach (var item in events.data)
+                foreach (var item in Fom.Globals.MISEVENTOS)
                 {
-
                     var pin = new Pin
                     {
                         Type = PinType.Place,
@@ -80,7 +79,7 @@ namespace AppFom.Pages
                 slider.ValueChanged += (sender, e) =>
                 {
                     var zoomLevel = e.NewValue; // between 1 and 18
-                    var latlongdegrees = 360 / (Math.Pow(2, zoomLevel));
+                var latlongdegrees = 360 / (Math.Pow(2, zoomLevel));
                     map.MoveToRegion(new MapSpan(map.VisibleRegion.Center, latlongdegrees, latlongdegrees));
                 };
                 // stack.Children.Add(slider);
@@ -99,8 +98,16 @@ namespace AppFom.Pages
 
             var position = await locator.GetLastKnownLocationAsync();
 
+            if (position != null)
+            {
 
-            return new KeyValuePair<double, double>(position.Latitude, position.Longitude);
+                return new KeyValuePair<double, double>(position.Latitude, position.Longitude);
+            }
+            else
+            {
+
+                return new KeyValuePair<double, double>(19.39068, -99.283697);
+            }
 
         }
 

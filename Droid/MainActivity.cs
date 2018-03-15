@@ -15,10 +15,13 @@ using Android.Gms.Common;
 using Firebase.Messaging;
 using Firebase.Iid;
 using Android.Util;
+using Xamarin.Forms;
+using Octane.Xam.VideoPlayer.Android;
 
+[assembly: ExportRenderer(typeof(Telerik.XamarinForms.Input.RadCalendar), typeof(Telerik.XamarinForms.InputRenderer.Android.CalendarRenderer))]
 namespace AppFom.Droid
 {
-    [Activity(Label = "Rafa Gana 2018", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Pepe Gana 2018", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
@@ -30,6 +33,7 @@ namespace AppFom.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FormsVideoPlayer.Init();
             FormsMaps.Init(this, bundle);
             XamForms.Controls.Droid.Calendar.Init();
             ImageCircleRenderer.Init();

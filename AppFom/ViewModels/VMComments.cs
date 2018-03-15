@@ -45,7 +45,7 @@ namespace AppFom.ViewModels
             set { SetProperty(ref sourceListActivities, value); }
         }
 
-
+        public const string TextMessagePropertyName = "TextMessage";
         private string textMessage;
         public string TextMessage
         {
@@ -108,6 +108,7 @@ namespace AppFom.ViewModels
 
                 textMessage = "";
                 TextMessage = textMessage;
+                OnPropertyChanged(TextMessagePropertyName);
 
                 UserDialogs.Instance.HideLoading();
             }

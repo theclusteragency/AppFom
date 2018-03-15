@@ -4,9 +4,13 @@ using System.Linq;
 using AppFom.Helpers;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
+using Octane.Xam.VideoPlayer.iOS;
 using UIKit;
 using Xamarin;
+using Xamarin.Forms;
 using XamForms.Controls.iOS;
+
+[assembly: ExportRenderer(typeof(Telerik.XamarinForms.Input.RadCalendar), typeof(Telerik.XamarinForms.InputRenderer.iOS.CalendarRenderer))]
 
 namespace AppFom.iOS
 {
@@ -15,7 +19,11 @@ namespace AppFom.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            new Telerik.XamarinForms.InputRenderer.iOS.CalendarRenderer();
+
             global::Xamarin.Forms.Forms.Init();
+            FormsVideoPlayer.Init();
+            Telerik.XamarinForms.Common.iOS.TelerikForms.Init();
             FormsMaps.Init();
             Calendar.Init();
             ImageCircleRenderer.Init();

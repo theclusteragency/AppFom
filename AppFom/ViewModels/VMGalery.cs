@@ -159,7 +159,7 @@ namespace AppFom.ViewModels
             Debug.WriteLine("Photo: " + urlPhoto);
 
             // Cargamos variiable url a obj user
-            Fom.Globals.USERFOM.url_avatar = urlPhoto;
+            //Fom.Globals.USERFOM.url_avatar = urlPhoto;
 
         }
     }

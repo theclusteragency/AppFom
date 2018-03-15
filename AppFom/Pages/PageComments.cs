@@ -27,7 +27,8 @@ namespace AppFom.Pages
 
             var BgLayout = new RelativeLayout();
 
-            var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+            //var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+            var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin_red.png"), Aspect = Aspect.AspectFill };
 
             BgLayout.Children.Add(BgImage,
                               Constraint.Constant(0),
@@ -57,6 +58,7 @@ namespace AppFom.Pages
                              })
                         );
 
+            // Comentario
             var slWrapComment = new StackLayout
             {
                 BackgroundColor = Color.Gray,
@@ -96,7 +98,7 @@ namespace AppFom.Pages
 
             BgLayout.Children.Add(slWrapComment,
                             Constraint.Constant(0),
-                            Constraint.Constant(Fom.Screen.Height * .8),
+                            Constraint.Constant(Fom.Screen.Height * .78),
                             Constraint.RelativeToParent((Parent) =>
                             {
                                 return Parent.Width;
@@ -106,7 +108,7 @@ namespace AppFom.Pages
 
             this.BindingContext = new VMComments(this.Navigation, lcomentarios, idevento);
 
-            Content = new ScrollView { Content = BgLayout };
+            Content = BgLayout;
 
         }
 
@@ -118,17 +120,15 @@ namespace AppFom.Pages
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Spacing = 20,
-                Padding = new Thickness(0, 0, 0, 0)
+                Padding = new Thickness(0, 0, 0, 0),
+                HeightRequest = Fom.Screen.Height * .7,
             };
 
             var listActivities = new ListView();
             listActivities.BackgroundColor = Color.Transparent;
             listActivities.ItemTemplate = new DataTemplate(typeof(VCComment));
             listActivities.SetBinding(ListView.ItemsSourceProperty, "SourceListActivities");
-            //listActivities.ItemsSource = lcomentarios;
             listActivities.SetBinding(ListView.SelectedItemProperty, "SelectedActivity");
-            //listEvents.SetBinding(ListView.SelectedItemProperty, "SelectedEvents");
-            //listEvents.SetBinding(ListView.IsRefreshingProperty, "IsBusy");
             listActivities.RowHeight = 100;
             listActivities.ItemSelected += (sender, e) =>
             {
@@ -137,7 +137,7 @@ namespace AppFom.Pages
 
                 ((ListView)sender).SelectedItem = null;
             };
-            //listActivities.SeparatorColor = Color.Transparent;
+            listActivities.SeparatorColor = Fom.Colors.UIKitOrange;
 
             slWrap.Children.Add(listActivities);
 

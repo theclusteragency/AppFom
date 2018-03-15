@@ -26,7 +26,8 @@ namespace AppFom.Pages
 
             var BgLayout = new RelativeLayout();
 
-            var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+            //var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin.png"), Aspect = Aspect.AspectFill };
+            var BgImage = new Image { Source = ImageSource.FromResource("AppFom.Images.bg_fom_blelogin_red.png"), Aspect = Aspect.AspectFill };
 
             BgLayout.Children.Add(BgImage,
                               Constraint.Constant(0),
@@ -69,10 +70,10 @@ namespace AppFom.Pages
         {
 
             // Pedimos eventos
-            var services = new OperationServices();
-            var events = await services.GetOperEvents();
+            //var services = new OperationServices();
+            //var events = await services.GetOperEvents();
 
-            leventos = events.data;
+            leventos = Fom.Globals.MISEVENTOS;// events.data;
 
             var frCalendar = new Frame
             {

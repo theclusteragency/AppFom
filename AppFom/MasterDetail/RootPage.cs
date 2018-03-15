@@ -15,7 +15,9 @@ namespace AppFom.MasterDetail
             menuPage = new MenuPage();
             menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
             Master = menuPage;
-            Detail = new NavigationPage(new PageMap()) { BarBackgroundColor = Fom.Colors.UIKitBlue, BarTextColor = Color.White }; ;
+            //Detail = new NavigationPage(new PageMap()) { BarBackgroundColor = Fom.Colors.UIKitBlue, BarTextColor = Color.White }; 
+            Detail = new NavigationPage(new PageEvents()) { BarBackgroundColor = Fom.Colors.UIKitRed, BarTextColor = Color.White };
+
         }
 
         public RootPage(string root)
@@ -24,7 +26,7 @@ namespace AppFom.MasterDetail
             menuPage = new MenuPage();
             menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
             Master = menuPage;
-            Detail = new NavigationPage(new PageAccount()) { BarBackgroundColor = Fom.Colors.UIKitBlue, BarTextColor = Color.White }; ;
+            Detail = new NavigationPage(new PageAccount()) { BarBackgroundColor = Fom.Colors.UIKitRed, BarTextColor = Color.White }; ;
         }
 
 
@@ -65,7 +67,7 @@ namespace AppFom.MasterDetail
                     {
                         Page displayPage = (Page)Activator.CreateInstance(menu.TargetType);
 
-                        Detail = new NavigationPage(displayPage) { BarBackgroundColor = Fom.Colors.UIKitBlue, BarTextColor = Color.White };
+                        Detail = new NavigationPage(displayPage) { BarBackgroundColor = Fom.Colors.UIKitRed, BarTextColor = Color.White };
 
                         menuPage.Menu.SelectedItem = null;
                         IsPresented = false;

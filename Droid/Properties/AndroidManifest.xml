@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="mx.rafagana.AppFom" android:versionCode="6">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="mx.rafagana.AppFom" android:versionCode="1">
 	<uses-sdk android:minSdkVersion="15" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -11,8 +11,10 @@
 	<uses-permission android:name="android.permission.CALL_PHONE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.CAMERA" />
 	<application android:label="Rafa Gana 2018">
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDjOCNSbToeSLwe1sUx7SGLkqSAaCU3_Ac" />
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAVMB-XiKF5SUlo2X4Jnj2wot0sIRyef1Y" />
 		<!--FIREBASE RECEIVER-->
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">

@@ -25,5 +25,11 @@ namespace AppFom.Interfaces
         Task<OperResult<int>> UpdStatusEvent<T>(T generic);
 
         Task<OperResult<int>> UpdStatusActivity<T>(T generic);
+
+        Task<OperResult<List<User>>> getAllUsers();
+
+        Task<OperResult<List<Comentario>>> getChatComments<T>(T generic);
+
+        Task<OperResult<int>> AddChatComment<T>(T generic);
     }
 }

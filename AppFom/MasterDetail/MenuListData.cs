@@ -8,6 +8,21 @@ namespace AppFom.MasterDetail
     {
         public MenuListData()
         {
+            this.Add(new MenuItem()
+            {
+                Title = "Mis eventos",
+                IconSource = "ico_menu_events",
+                TargetType = typeof(PageEvents),
+                Enable = true
+            });
+
+            this.Add(new MenuItem()
+            {
+                Title = "Calendario",
+                IconSource = "ico_menu_calendar",
+                TargetType = typeof(PageTest),
+                Enable = true
+            });
 
             this.Add(new MenuItem()
             {
@@ -19,19 +34,21 @@ namespace AppFom.MasterDetail
 
             this.Add(new MenuItem()
             {
-                Title = "Calendario",
-                IconSource = "ico_menu_calendar",
-                TargetType = typeof(PageCalendar),
+                Title = "Chat",
+                IconSource = "ico_menu_chat",
+                TargetType = typeof(PageChat),
                 Enable = true
             });
 
-            this.Add(new MenuItem()
-            {
-                Title = "Mis eventos",
-                IconSource = "ico_menu_events",
-                TargetType = typeof(PageEvents),
-                Enable = true
-            });
+
+            //this.Add(new MenuItem()
+            //{
+            //    Title = "Calendario",
+            //    IconSource = "ico_menu_calendar",
+            //    TargetType = typeof(PageCalendar),
+            //    Enable = true
+            //});
+
 
             this.Add(new MenuItem()
             {

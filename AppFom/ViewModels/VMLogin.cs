@@ -61,13 +61,12 @@ namespace AppFom.ViewModels
         public void LoadDefault()
         {
 
-            if (dataUser != null && string.IsNullOrEmpty(dataUser.telefono.ToString()))
+            if (dataUser != null && !string.IsNullOrEmpty(dataUser.correo))
             {
 
                 textUser = dataUser.correo;
-                textPsw = dataUser.contrasena;
+                //textPsw = dataUser.contrasena;
             }
-
 
         }
 
